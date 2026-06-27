@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>鹅腿阿姨舆情传播数据新闻</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./vendor/echarts.min.js"></script>
+    <script src="./vendor/lucide.min.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="回到顶部">
+        <span class="brand-mark"></span>
+        鹅腿阿姨舆情观察
+      </a>
+      <nav class="nav" aria-label="页面导航">
+        <a href="#spread">传播</a>
+        <a href="#sentiment">情绪</a>
+        <a href="#region">地域</a>
+        <a href="#opinions">观点</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero band">
+        <div class="wrap hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">舆情分析 · 2026.06.05 0:00 - 2026.06.30 0:00</p>
+            <h1>鹅腿阿姨舆情传播报告</h1>
+            <p class="lead">
+              一只“鹅腿”如何变成 8.9 万条公共讨论？从“鸭充鹅”的消费争议，到高校身份、食品安全和商家诚信的连锁讨论，
+              “鹅腿阿姨”事件在微博、短视频和资讯平台之间快速扩散。
+            </p>
+            <div class="hero-actions">
+              <a class="primary-action" href="#spread">
+                <i data-lucide="activity"></i>
+                看传播走势
+              </a>
+              <a class="secondary-action" href="#story">
+                <i data-lucide="map"></i>
+                看事件脉络
+              </a>
+            </div>
+          </div>
+          <div class="hero-visual" aria-label="关键数据总览">
+            <div class="radial-metric">
+              <span>全网声量</span>
+              <strong>89,377</strong>
+              <small>负面占比 23.12%</small>
+            </div>
+            <div class="spark-bars" aria-hidden="true">
+              <span style="height: 22%"></span>
+              <span style="height: 46%"></span>
+              <span style="height: 78%"></span>
+              <span style="height: 100%"></span>
+              <span style="height: 58%"></span>
+              <span style="height: 42%"></span>
+              <span style="height: 14%"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="band kpi-band">
+        <div class="wrap kpi-grid" id="kpiGrid"></div>
+      </section>
+
+      <section id="story" class="band story-band">
+        <div class="wrap section-heading">
+          <p class="eyebrow">事件脉络</p>
+          <h2>争议从团购群公告被确认，随后进入媒体和平台热榜</h2>
+        </div>
+        <div class="wrap timeline" id="timeline"></div>
+      </section>
+
+      <section id="spread" class="band">
+        <div class="wrap section-heading split-heading">
+          <div>
+            <p class="eyebrow">传播动态</p>
+            <h2>6 月 12 日形成全网峰值，微博和短视频共同推高声量</h2>
+          </div>
+          <div class="source-note">数据整理自文件夹内《数据.docx》</div>
+        </div>
+        <div class="wrap dashboard-grid">
+          <article class="panel panel-wide">
+            <div class="panel-head">
+              <div>
+                <h3>全网发展趋势</h3>
+                <p>峰值日产生 22,026 条相关信息，微博单日最高 10,008 条。</p>
+              </div>
+              <button class="icon-button" id="downloadTrend" type="button" title="保存趋势图">
+                <i data-lucide="download"></i>
+              </button>
+            </div>
+            <div class="chart tall-chart" id="trendChart"></div>
+          </article>
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <h3>平台分布</h3>
+                <p>新浪微博占据第一传播阵地，抖音和微信紧随其后。</p>
+              </div>
+            </div>
+            <div class="chart tall-chart" id="platformChart"></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="sentiment" class="band tone-band">
+        <div class="wrap section-heading split-heading">
+          <div>
+            <p class="eyebrow">情绪结构</p>
+            <h2>大多数讨论保持中性，但负面评价集中指向“误导”和“食品安全”</h2>
+          </div>
+          <div class="segmented" id="sentimentTabs" role="tablist" aria-label="情绪数据切换"></div>
+        </div>
+        <div class="wrap dashboard-grid three">
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <h3>倾向性分布</h3>
+                <p id="sentimentCaption">总体舆情倾向。</p>
+              </div>
+            </div>
+            <div class="chart medium-chart" id="sentimentChart"></div>
+          </article>
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <h3>网民性别</h3>
+                <p>未知性别占比最高，男性讨论量高于女性。</p>
+              </div>
+            </div>
+            <div class="chart medium-chart" id="genderChart"></div>
+          </article>
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <h3>IP 分布</h3>
+                <p>境内 IP 是主要参与来源。</p>
+              </div>
+            </div>
+            <div class="chart medium-chart" id="ipChart"></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="region" class="band">
+        <div class="wrap section-heading split-heading">
+          <div>
+            <p class="eyebrow">地域与热词</p>
+            <h2>广东、北京、江苏、上海、浙江构成主要关注区域</h2>
+          </div>
+          <div class="segmented" id="regionTabs" role="tablist" aria-label="地域数据切换"></div>
+        </div>
+        <div class="wrap dashboard-grid">
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <h3>地域排行</h3>
+                <p id="regionCaption">作者地域 Top 10。</p>
+              </div>
+            </div>
+            <div class="chart tall-chart" id="regionChart"></div>
+          </article>
+          <article class="panel panel-wide">
+            <div class="panel-head">
+              <div>
+                <h3>高频关键词</h3>
+                <p>关键词保留议题词，过滤明显辱骂词。</p>
+              </div>
+            </div>
+            <div class="keyword-cloud" id="keywordCloud" aria-label="关键词云"></div>
+            <div class="chart small-chart" id="keywordChart"></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="band hot-band">
+        <div class="wrap section-heading">
+          <p class="eyebrow">热榜扩散</p>
+          <h2>热搜标题把争议从单一摊位推向“消费诚信”与“校园滤镜”</h2>
+        </div>
+        <div class="wrap two-column">
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <h3>相关热搜样本</h3>
+                <p>文件中共梳理 183 个相关热搜。</p>
+              </div>
+            </div>
+            <div class="hot-list" id="hotSearchList"></div>
+          </article>
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <h3>微博传播层级</h3>
+                <p>转发链条中四层以上占比接近一半。</p>
+              </div>
+            </div>
+            <div class="chart medium-chart" id="layerChart"></div>
+            <div class="propagation-stats" id="propagationStats"></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="opinions" class="band opinion-band">
+        <div class="wrap section-heading split-heading">
+          <div>
+            <p class="eyebrow">观点分布</p>
+            <h2>讨论焦点落在三个问题：叫法、明示义务、食品安全</h2>
+          </div>
+          <div class="segmented" id="opinionTabs" role="tablist" aria-label="观点类型切换"></div>
+        </div>
+        <div class="wrap dashboard-grid">
+          <article class="panel panel-wide">
+            <div class="panel-head">
+              <div>
+                <h3>观点热度排行</h3>
+                <p id="opinionCaption">网民观点 Top 10。</p>
+              </div>
+            </div>
+            <div class="opinion-list" id="opinionList"></div>
+          </article>
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <h3>重点媒体</h3>
+                <p>中央、省级和地方媒体共同跟进。</p>
+              </div>
+            </div>
+            <div class="media-summary" id="mediaSummary"></div>
+            <div class="chart small-chart" id="mediaChart"></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="band conclusion-band">
+        <div class="wrap section-heading">
+          <p class="eyebrow">舆情判断</p>
+          <h2>这场讨论不是简单的“食材鉴别”，而是信任关系被重新审视</h2>
+        </div>
+        <div class="wrap conclusion-grid">
+          <article>
+            <span>01</span>
+            <h3>核心矛盾</h3>
+            <p>“鹅腿阿姨”名称与实际售卖鸭腿之间的落差，触发了消费者对明示义务和价格合理性的追问。</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>传播动力</h3>
+            <p>高校记忆、网红摊位、监管通报和食品安全疑问叠加，使事件不断获得新的讨论入口。</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>后续趋势</h3>
+            <p>若监管核查结果或同类商户改名继续出现，舆情可能从个案扩展到校园周边餐饮诚信议题。</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap">
+        <p>舆情数据新闻作品｜基于公开社交媒体监测数据整理与可视化</p>
+      </div>
+    </footer>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
